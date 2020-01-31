@@ -3,11 +3,10 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { NotFoundComponent } from './not-found/not-found.component';
 
-
 const routes: Routes = [
   {
     path: 'login',
-    loadChildren: './login/login.module#LoginModule'
+    loadChildren: () => import('./login/login.module').then(mod => mod.LoginModule),
   },
   {
     path: '**',
