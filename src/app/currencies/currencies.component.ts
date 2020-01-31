@@ -26,7 +26,6 @@ export class CurrenciesComponent implements OnInit {
         return [ btc, lsk, eth];
       })
     ).subscribe(response => {
-      console.log('response', response);
       this.bitResponse = response;
     });
   }
