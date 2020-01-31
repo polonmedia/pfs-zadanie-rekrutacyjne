@@ -3,8 +3,10 @@ import { CommonModule } from '@angular/common';
 import {
   MatCardModule,
   MatInputModule,
-  MatButtonModule
+  MatButtonModule,
+  MatIconModule
 } from '@angular/material';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { LoginComponent } from './login.component';
 import { LoginRoutingModule } from './login-routing.module';
@@ -18,7 +20,9 @@ import { LoginRoutingModule } from './login-routing.module';
     LoginRoutingModule,
     MatCardModule,
     MatInputModule,
-    MatButtonModule
+    MatButtonModule,
+    MatIconModule,
+    ReactiveFormsModule
   ],
   exports: [],
   providers: [],
