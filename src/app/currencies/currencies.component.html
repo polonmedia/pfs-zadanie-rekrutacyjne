@@ -1,1 +1,4 @@
-<p>currencies works!</p>
+<div *ngFor="let res of bitResponse">
+  <pfs-currency-pln [res]="res"></pfs-currency-pln>
+  <pfs-currency-usd [res]="res"></pfs-currency-usd>
+</div>

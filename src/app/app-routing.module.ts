@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { NotFoundComponent } from './not-found/not-found.component';
 import { AuthGuard } from './sys/auth-guard/auth-guard.guard';
+import { PreloadStrategyService } from './sys/preload-strategy/preload-strategy.service';
 
 const routes: Routes = [
   {
@@ -13,7 +14,7 @@ const routes: Routes = [
   {
     path: 'login',
     loadChildren: () => import('./login/login.module').then(mod => mod.LoginModule),
-    canLoad: [AuthGuard]
+    canActivate: [AuthGuard]
   },
   {
     path: 'features',
@@ -23,7 +24,8 @@ const routes: Routes = [
   {
     path: 'currencies',
     loadChildren: () => import('./currencies/currencies.module').then(mod => mod.CurrenciesModule),
-    canLoad: [AuthGuard]
+    canLoad: [AuthGuard],
+    data: { preload: true }
   },
   {
     path: '**',
@@ -32,7 +34,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { preloadingStrategy: PreloadStrategyService })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
