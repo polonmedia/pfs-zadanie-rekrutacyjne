@@ -21,6 +21,11 @@ const routes: Routes = [
     canLoad: [AuthGuard]
   },
   {
+    path: 'currencies',
+    loadChildren: () => import('./currencies/currencies.module').then(mod => mod.CurrenciesModule),
+    canLoad: [AuthGuard]
+  },
+  {
     path: '**',
     component: NotFoundComponent
   }
