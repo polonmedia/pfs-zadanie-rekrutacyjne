@@ -1,10 +1,13 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, ErrorHandler } from '@angular/core';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NotFoundComponent } from './not-found/not-found.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { XHRInterceptor } from './sys/interceptor/xhr.interceptor';
+import { GlobalErrorHandler } from './sys/global-error-handler/global-error-handler';
 
 @NgModule({
   declarations: [
@@ -14,9 +17,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: XHRInterceptor, multi: true },
+    { provide: ErrorHandler, useClass: GlobalErrorHandler }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
